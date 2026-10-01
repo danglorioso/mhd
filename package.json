@@ -11,7 +11,8 @@
         "format": "prettier --write .",
         "format:check": "prettier --check .",
         "prepare": "husky",
-        "knip": "knip"
+        "knip": "knip",
+        "demo:seed": "tsx scripts/demo-seed.ts"
     },
     "dependencies": {
         "@better-auth/drizzle-adapter": "^1.5.3",
@@ -73,6 +74,7 @@
         "lint-staged": "^16.2.3",
         "prettier": "^3.6.2",
         "tailwindcss": "^4",
+        "tsx": "^4.23.15",
         "typescript": "^5.9.3",
         "typescript-eslint": "^8.56.0"
     },

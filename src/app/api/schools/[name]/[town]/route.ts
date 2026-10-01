@@ -37,7 +37,7 @@ async function upsertYearlySchoolData(
     year: number,
     fields: YearlySchoolFields,
 ) {
-    const db = getDb();
+    const db = await getDb();
     const existing = await db.query.yearlySchoolParticipation.findFirst({
         where: and(
             eq(yearlySchoolParticipation.schoolId, schoolId),
@@ -87,7 +87,7 @@ export async function PATCH(
             year,
         } = parsed.data;
 
-        const db = getDb();
+        const db = await getDb();
         const schoolResult = await db
             .select({
                 id: schools.id,
@@ -252,7 +252,7 @@ export async function GET(
         const year = Number(searchParams.get("year"));
         const { name, town } = await params;
         const townQuery = decodeTownSegment(town);
-        const db = getDb();
+        const db = await getDb();
 
         // Match on standardized name + town (mirrors the DB unique constraint)
         const schoolResult = await db

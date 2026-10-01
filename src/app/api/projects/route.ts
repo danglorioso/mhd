@@ -22,7 +22,7 @@ import { internalError } from "@/lib/api-utils";
 
 export async function GET() {
     try {
-        const db = getDb();
+        const db = await getDb();
         const allProjects = await db
             .select({
                 id: projects.id,

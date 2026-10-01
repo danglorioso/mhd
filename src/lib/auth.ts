@@ -15,7 +15,8 @@ const GATED_EMAIL_OTP_PATHS = new Set([
 ]);
 
 async function isEmailAllowed(email: string): Promise<boolean> {
-    const [row] = await getDb()
+    const db = await getDb();
+    const [row] = await db
         .select({ id: allowedEmails.id })
         .from(allowedEmails)
         .where(eq(allowedEmails.email, email.trim().toLowerCase()))
@@ -26,7 +27,7 @@ async function isEmailAllowed(email: string): Promise<boolean> {
 // Lazily constructed for the same reason as getDb() — building this eagerly
 // at module scope would touch DATABASE_URL/RESEND_API_KEY at import time and
 // crash `next build` on a deploy where those aren't set yet.
-function buildAuth() {
+async function buildAuth() {
     const resend = new Resend(process.env.RESEND_API_KEY);
 
     return betterAuth({
@@ -34,7 +35,7 @@ function buildAuth() {
             enabled: false,
         },
 
-        database: drizzleAdapter(getDb(), {
+        database: drizzleAdapter(await getDb(), {
             provider: "pg",
             schema,
         }),

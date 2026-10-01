@@ -31,7 +31,7 @@ export async function GET(req: NextRequest) {
         if (!parsed.success) return parsed.response;
 
         const { year } = parsed.data;
-        const db = getDb();
+        const db = await getDb();
 
         const schoolsPerYear = await db
             .select({

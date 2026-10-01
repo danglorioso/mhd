@@ -5,7 +5,7 @@ import { eq } from "drizzle-orm";
 
 export async function GET() {
     try {
-        const db = getDb();
+        const db = await getDb();
         const rows = await db
             .select({
                 id: allowedEmails.id,
@@ -33,7 +33,7 @@ export async function POST(req: NextRequest) {
             );
         }
         const normalized = email.trim().toLowerCase();
-        const db = getDb();
+        const db = await getDb();
         const [inserted] = await db
             .insert(allowedEmails)
             .values({ email: normalized })
@@ -64,7 +64,7 @@ export async function DELETE(req: NextRequest) {
         const id = Number(searchParams.get("id"));
         if (!id)
             return NextResponse.json({ error: "Missing id" }, { status: 400 });
-        const db = getDb();
+        const db = await getDb();
         const [removed] = await db
             .delete(allowedEmails)
             .where(eq(allowedEmails.id, id))

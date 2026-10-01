@@ -186,7 +186,7 @@ function chunkArray<T>(arr: T[], size: number): T[][] {
 export async function POST(req: NextRequest) {
     currentProgress = { progress: 0, complete: false };
     try {
-        const db = getDb();
+        const db = await getDb();
         const jsonReq = await req.json();
         const yearResult = yearSchema.safeParse(jsonReq.formYear);
         if (!yearResult.success) {

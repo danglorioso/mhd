@@ -17,7 +17,7 @@ import { internalError } from "@/lib/api-utils";
 
 export async function GET(req: Request) {
     try {
-        const db = getDb();
+        const db = await getDb();
         const { searchParams } = new URL(req.url);
         const schoolParam = searchParams.get("school");
 

@@ -31,7 +31,7 @@ export async function DELETE(req: NextRequest) {
         if (!parsed.success) return parsed.response;
 
         const { year } = parsed.data;
-        const db = getDb();
+        const db = await getDb();
 
         await db.delete(projects).where(eq(projects.year, year));
         await db

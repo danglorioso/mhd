@@ -38,7 +38,7 @@ export async function POST(req: NextRequest) {
             ...new Set(uploadedSchools.map((s) => s.schoolKey.split("__")[0])),
         ];
 
-        const db = getDb();
+        const db = await getDb();
         const [dbSchools, existingAliases] = await Promise.all([
             db
                 .select({

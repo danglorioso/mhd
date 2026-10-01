@@ -23,6 +23,10 @@ export async function exportSchoolToPDF(
     input: SchoolExportInput,
     print = false,
 ): Promise<boolean> {
+    if (process.env.NEXT_PUBLIC_IS_DEMO === "true") {
+        toast.error("Exporting is disabled in the demo.");
+        return false;
+    }
     ensurePdfFontsRegistered();
     try {
         const blob = await pdf(<SchoolDocument input={input} />).toBlob();

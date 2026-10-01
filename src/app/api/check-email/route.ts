@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
             );
         }
         const normalized = email.trim().toLowerCase();
-        const db = getDb();
+        const db = await getDb();
         const allowed = await db
             .select({ id: allowedEmails.id })
             .from(allowedEmails)

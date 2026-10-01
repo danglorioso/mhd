@@ -18,7 +18,7 @@ export async function POST(req: NextRequest) {
         if (!parsed.success) return parsed.response;
 
         const { baseSchoolId, mergingSchoolId } = parsed.data;
-        const db = getDb();
+        const db = await getDb();
 
         const [baseSchool, mergingSchool] = await Promise.all([
             db

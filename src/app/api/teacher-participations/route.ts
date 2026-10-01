@@ -10,7 +10,7 @@ import { internalError } from "@/lib/api-utils";
 
 export async function GET() {
     try {
-        const db = getDb();
+        const db = await getDb();
         const rows = await db
             .select({
                 teacherId: yearlyTeacherParticipation.teacherId,

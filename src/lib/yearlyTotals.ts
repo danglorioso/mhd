@@ -7,7 +7,7 @@ import {
 import { eq, count, sum, countDistinct, asc } from "drizzle-orm";
 
 async function getTeacherCountByYear(): Promise<Map<number, number>> {
-    const db = getDb();
+    const db = await getDb();
     const rows = await db
         .select({
             year: yearlyTeacherParticipation.year,
@@ -20,7 +20,7 @@ async function getTeacherCountByYear(): Promise<Map<number, number>> {
 }
 
 async function getSchoolCountByYear(): Promise<Map<number, number>> {
-    const db = getDb();
+    const db = await getDb();
     const rows = await db
         .select({
             year: yearlySchoolParticipation.year,
@@ -33,7 +33,7 @@ async function getSchoolCountByYear(): Promise<Map<number, number>> {
 }
 
 async function getParticipatingStudentsByYear(): Promise<Map<number, number>> {
-    const db = getDb();
+    const db = await getDb();
     const rows = await db
         .select({
             year: yearlySchoolParticipation.year,
@@ -46,7 +46,7 @@ async function getParticipatingStudentsByYear(): Promise<Map<number, number>> {
 }
 
 export async function getYearlyStats(year: number) {
-    const db = getDb();
+    const db = await getDb();
     const [schoolRow] = await db
         .select({
             total_schools: countDistinct(yearlySchoolParticipation.schoolId),
@@ -110,7 +110,7 @@ export async function getYearlyStats(year: number) {
  * Get stats for all years - used for sparkline historical data
  */
 export async function getAllYearsStats() {
-    const db = getDb();
+    const db = await getDb();
     const [
         results,
         schoolCountByYear,

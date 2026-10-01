@@ -33,7 +33,7 @@ export async function PATCH(
         const parsed = parseOrError(projectPatchBodySchema, body);
         if (!parsed.success) return parsed.response;
 
-        const db = getDb();
+        const db = await getDb();
         const result = await db
             .update(projects)
             .set(parsed.data)

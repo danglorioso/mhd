@@ -24,6 +24,10 @@ export async function exportMapToPDF(
     legend?: HeatmapLegendData,
     print = false,
 ): Promise<boolean> {
+    if (process.env.NEXT_PUBLIC_IS_DEMO === "true") {
+        toast.error("Exporting is disabled in the demo.");
+        return false;
+    }
     if (!map) {
         toast.error("Map instance not found");
         return false;

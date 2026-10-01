@@ -92,7 +92,14 @@ export default function Sidebar() {
         positionAtActive();
     }, [positionAtActive]);
 
+    const isDemo = process.env.NEXT_PUBLIC_IS_DEMO === "true";
+
     const handleSignOut = async () => {
+        if (isDemo) {
+            await fetch("/api/demo/end", { method: "POST" });
+            router.push("/demo/start");
+            return;
+        }
         await authClient.signOut({
             fetchOptions: {
                 onSuccess: () => {
@@ -268,7 +275,10 @@ export default function Sidebar() {
                                     className="flex items-center gap-2 px-3 py-2 rounded-lg text-sm font-medium text-foreground overflow-hidden whitespace-nowrap hover:bg-accent cursor-pointer w-full"
                                 >
                                     <span className="flex-1 overflow-hidden whitespace-nowrap text-left">
-                                        {session?.user?.email || "Loading..."}
+                                        {isDemo
+                                            ? "Demo User"
+                                            : session?.user?.email ||
+                                              "Loading..."}
                                     </span>
                                     <MoreHorizontal
                                         size={14}

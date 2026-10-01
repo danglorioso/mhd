@@ -24,7 +24,7 @@ import { internalError } from "@/lib/api-utils";
 
 export async function GET() {
     try {
-        const db = getDb();
+        const db = await getDb();
         // Fetch DB schools that already have coordinates
         const dbSchools = await db
             .select({

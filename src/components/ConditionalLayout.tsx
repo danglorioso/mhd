@@ -11,7 +11,7 @@ export default function ConditionalLayout({
 }) {
     const pathname = usePathname();
 
-    const isAuthPage = pathname === "/signin";
+    const isAuthPage = pathname === "/signin" || pathname === "/demo/start";
 
     // If on auth pages, just render children without sidebar
     if (isAuthPage) {

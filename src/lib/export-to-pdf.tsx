@@ -31,6 +31,10 @@ export async function downloadGraphs(
     print = false,
     filename?: string,
 ): Promise<void> {
+    if (process.env.NEXT_PUBLIC_IS_DEMO === "true") {
+        toast.error("Exporting is disabled in the demo.");
+        return;
+    }
     if (items.length === 0) {
         toast.error("Cart is empty");
         return;

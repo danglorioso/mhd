@@ -16,7 +16,7 @@ export async function GET(
     try {
         const { name, town } = await params;
         const townQuery = decodeTownSegment(town);
-        const db = getDb();
+        const db = await getDb();
 
         const schoolResult = await db
             .select({ id: schools.id, gateway: schools.gateway })
@@ -55,7 +55,7 @@ export async function PATCH(
         if (!parsed.success) return parsed.response;
 
         const { gateway } = parsed.data;
-        const db = getDb();
+        const db = await getDb();
 
         const schoolResult = await db
             .select({ id: schools.id })

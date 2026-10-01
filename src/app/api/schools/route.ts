@@ -27,7 +27,7 @@ function percentageChange(curr: number, past: number) {
 
 export async function GET(req: NextRequest) {
     try {
-        const db = getDb();
+        const db = await getDb();
         const { searchParams } = new URL(req.url);
 
         // Lightweight list mode: school info for all schools

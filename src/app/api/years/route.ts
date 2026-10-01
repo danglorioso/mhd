@@ -5,7 +5,7 @@ import { internalError } from "@/lib/api-utils";
 
 export async function GET() {
     try {
-        const db = getDb();
+        const db = await getDb();
         const yearsWithData = await db
             .selectDistinct({ year: yearlySchoolParticipation.year })
             .from(yearlySchoolParticipation);
