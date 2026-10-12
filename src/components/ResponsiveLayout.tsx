@@ -35,10 +35,14 @@ export default function ResponsiveLayout({
     if (isMobile) {
         return (
             <div className="flex items-center justify-center h-screen w-screen bg-background">
-                <div className="flex flex-col items-center gap-4">
+                <div className="flex flex-col items-center gap-4 px-6 max-w-sm">
                     <HeartCrack className="h-6 w-6 text-foreground" />
                     <p className="text-sm text-foreground text-center">
-                        We&apos;re sorry, screens of this size are unsupported
+                        We&apos;re sorry, screens of this size are unsupported.
+                    </p>
+                    <p className="text-sm text-muted-foreground text-center">
+                        Please open this site in a browser on a desktop or
+                        laptop, or make your browser window wider.
                     </p>
                 </div>
             </div>
