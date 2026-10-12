@@ -3,7 +3,7 @@ import DemoStartForm from "@/components/DemoStartForm";
 import WarpShader from "@/components/WarpShader";
 
 export const metadata: Metadata = {
-    title: "Demo",
+    title: "Sign In",
 };
 
 export default async function DemoStartPage({
@@ -13,7 +13,7 @@ export default async function DemoStartPage({
 }) {
     const { redirect } = await searchParams;
     return (
-        <div className="flex h-screen flex-col items-center justify-center">
+        <div className="flex h-full flex-col items-center justify-center">
             <div className="w-full h-full flex flex-row">
                 <DemoStartForm redirectTo={redirect} />
                 <div className="w-1/2 h-full hidden md:block">

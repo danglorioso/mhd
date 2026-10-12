@@ -38,24 +38,24 @@ export default function DemoStartForm({ redirectTo }: { redirectTo?: string }) {
                     src="/images/mhs-logo-full.png"
                     alt="MHS Logo Image"
                     width={200}
-                    height={100}
+                    height={73}
                     priority
                 />
             </div>
 
             <div className="flex-1 flex items-center justify-center w-full max-w-md">
                 <div className="w-full flex flex-col gap-8">
-                    <div className="flex flex-col gap-4">
-                        <h1 className="text-3xl font-bold">Demo</h1>
-                        <div className="text-sm text-amber-900 bg-amber-100 border border-amber-200 rounded p-3">
-                            Demo only — every school, teacher, and project shown
-                            here is fake sample data. Edits are private to your
-                            visit and reset automatically; nothing is saved
-                            permanently.
-                        </div>
+                    <div className="flex flex-col gap-2">
+                        <h1 className="text-3xl font-bold">Sign In</h1>
+                        <p className="text-[#646464]">
+                            This is a demo of the Massachusetts History Day
+                            dashboard, so no account is needed. Everything shown
+                            is sample data, and any changes you make reset
+                            automatically.
+                        </p>
                     </div>
 
-                    <div className="w-full flex flex-col gap-4">
+                    <div className="w-full space-y-8">
                         <Button
                             type="button"
                             className="w-full bg-[#1447E6]"
@@ -73,6 +73,20 @@ export default function DemoStartForm({ redirectTo }: { redirectTo?: string }) {
                         )}
                     </div>
                 </div>
+            </div>
+
+            <div className="pb-8">
+                <p className="text-[#646464] text-sm">
+                    Created with ❤️ by {}
+                    <a
+                        href="https://jumbocode.org"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="hover:underline"
+                    >
+                        JumboCode
+                    </a>
+                </p>
             </div>
         </div>
     );
